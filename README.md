@@ -22,11 +22,13 @@
 - How to get around that? Conditional simulation might be used to answer the problem.
   - Conditional simulation solves this by generating 100+ equally probable grade fields, all honouring the data and the variogram, allowing block-by-block probability statements to be made.
 <img width="1184" height="1155" alt="Slide-5" src="https://github.com/user-attachments/assets/b99f0371-bd99-423f-b2f8-b16d564ea095" />
-*The diagram illustrates a key flaw: two blocks can share the same kriging variance (KV = 0.75) even when their actual grade distributions are completely different. Block 1 has a tight, well-constrained grade; Block 2 is wildly uncertain. KV cannot distinguish them, it only reflects data geometry, not grade variability.*
+The diagram illustrates a key flaw: two blocks can share the same kriging variance (KV = 0.75) even when their actual grade distributions are completely different. Block 1 has a tight, well-constrained grade; Block 2 is wildly uncertain. KV cannot distinguish them, it only reflects data geometry, not grade variability.
 
 ## Workflow
 <img width="1096" height="681" alt="Workflow" src="https://github.com/user-attachments/assets/1a218738-f01f-4f03-8632-2754c6a75cff" />
-- Key difference from kriging workflow: after the variogram is fitted, a dense simulation grid is created and populated with 100 realisations using Sequential Gaussian Simulation (SGS). Each realisation is a valid, equally probable image of the deposit. Post-processing then extracts probability, cutoff, and confidence statistics from those 100 values at every block.
+
+- Key difference from kriging workflow: after the variogram is fitted, a dense simulation grid is created and populated with 100 realisations using Sequential Gaussian Simulation (SGS).
+- Each realisation is a valid, equally probable image of the deposit. Post-processing then extracts probability, cutoff, and confidence statistics from those 100 values at every block.
 - Gaussian variography (Normal Score transform) is required because SGS operates in Gaussian space, grades are transformed to a standard normal distribution before simulation, then back-transformed to real grades afterwards.
 
 ## Simulation validation: statistics
